@@ -1,1 +1,0 @@
-# Pendolo-semplice
