@@ -1,144 +1,56 @@
-# Pendolo Semplice - Piccole Oscillazioni
+# Pendolo per piccole oscillazioni
 
-Questo progetto contiene uno script Python che simula il moto di un pendolo
-semplice nel caso di piccole oscillazioni.
+## Descrizione
 
-Nel caso di angoli piccoli, l'equazione non lineare del pendolo:
-
-```text
-d²θ/dt² + (g/L) sin(θ) = 0
-```
-
-puo' essere approssimata con:
+Questo progetto studia il pendolo semplice nel limite delle piccole
+oscillazioni. In questo caso l'angolo e' abbastanza piccolo da poter usare
+l'approssimazione:
 
 ```text
-d²θ/dt² + (g/L) θ = 0
+sin(theta) ~= theta
 ```
 
-Questa e' l'equazione di un oscillatore armonico. In questo caso non serve una
-simulazione numerica: si puo' usare direttamente la soluzione analitica.
+Con questa approssimazione il moto del pendolo diventa quello di un oscillatore
+armonico e puo' essere descritto con una soluzione analitica.
 
-## Cosa Fa Lo Script
+Il progetto contiene sia uno script Python sia un notebook Jupyter.
 
-Lo script calcola nel tempo:
+## Modello fisico
 
-- la posizione angolare `θ(t)`;
-- la velocita' angolare `ω(t)`;
-- l'accelerazione angolare `α(t)`.
-
-Alla fine salva tre grafici nella cartella:
+L'equazione linearizzata del pendolo e':
 
 ```text
-output_grafici/
+theta''(t) + (g/L) theta(t) = 0
 ```
 
-## File Principale
+La frequenza angolare naturale e':
 
 ```text
-pendolo_semplice_piccole_oscillazioni.py
+omega = sqrt(g/L)
 ```
 
-## Requisiti
-
-Per eseguire lo script servono queste librerie Python:
+La soluzione generale puo' essere scritta come:
 
 ```text
-numpy
-matplotlib
+theta(t) = A cos(sqrt(g/L) t) + B sin(sqrt(g/L) t)
 ```
 
-Puoi installarle con:
-
-```bash
-pip install numpy matplotlib
-```
-
-Se nel tuo sistema usi `python3`, puoi installarle con:
-
-```bash
-python3 -m pip install numpy matplotlib
-```
-
-## Come Eseguire Il Programma
-
-Apri il terminale nella cartella di questo progetto:
-
-```bash
-cd pendolo_semplice_piccole_oscillazioni
-```
-
-Poi esegui:
-
-```bash
-python pendolo_semplice_piccole_oscillazioni.py
-```
-
-Se il comando `python` non funziona, prova:
-
-```bash
-python3 pendolo_semplice_piccole_oscillazioni.py
-```
-
-## Output Generato
-
-Lo script crea automaticamente la cartella:
+Nel codice, usando le condizioni iniziali `theta0` e `omega0`, la soluzione e':
 
 ```text
-output_grafici/
+theta(t) = theta0 cos(omega t) + (omega0 / omega) sin(omega t)
 ```
 
-Dentro vengono salvati tre file:
+Il periodo del moto e':
 
 ```text
-posizione_angolare.png
-velocita_angolare.png
-accelerazione_angolare.png
+T = 2 pi sqrt(L/g)
 ```
 
-I tre grafici mostrano rispettivamente:
+## Validita' dell'approssimazione
 
-- come cambia l'angolo del pendolo nel tempo;
-- come cambia la velocita' angolare;
-- come cambia l'accelerazione angolare.
-
-## Parametri Modificabili
-
-All'inizio dello script si possono modificare alcuni parametri:
-
-```python
-L = 1.0
-g = 9.81
-theta0 = 0.1
-omega0 = 0.0
-n_points = 1000
-```
-
-Significato:
-
-- `L`: lunghezza del pendolo in metri;
-- `g`: accelerazione di gravita' in m/s²;
-- `theta0`: angolo iniziale in radianti;
-- `omega0`: velocita' angolare iniziale in rad/s;
-- `n_points`: numero di punti usati per disegnare i grafici.
-
-Il periodo del pendolo viene calcolato automaticamente con:
-
-```text
-T = 2π / ω
-```
-
-dove:
-
-```text
-ω = √(g/L)
-```
-
-Nel codice il tempo totale simulato e' pari a tre periodi.
-
-## Nota Fisica
-
-L'approssimazione delle piccole oscillazioni e' valida quando l'angolo iniziale
-e' piccolo.
+L'approssimazione `sin(theta) ~= theta` e' valida quando `theta` e' piccolo ed e'
+espresso in radianti.
 
 Nel codice viene usato:
 
@@ -146,42 +58,95 @@ Nel codice viene usato:
 theta0 = 0.1
 ```
 
-che corrisponde a circa 5.7 gradi.
+che corrisponde a circa 5.7 gradi. Per angoli piu' grandi, l'errore
+dell'approssimazione cresce e conviene confrontare questo modello con il pendolo
+non lineare.
 
-Per angoli molto piu' grandi, l'approssimazione `sin(θ) ≈ θ` diventa meno
-accurata. In quel caso conviene usare il modello non lineare del pendolo.
+## Struttura del progetto
 
-## Come Caricare Questo README Su GitHub
+File principali:
 
-Dalla cartella principale del repository:
-
-```bash
-cd pendolo_semplice
+```text
+pendolo_semplice_piccole_oscillazioni/
+├── pendolo_semplice_piccole_oscillazioni.py
+├── pendolo_semplice_piccole_oscillazioni.ipynb
+└── README.md
 ```
 
-controlla lo stato dei file:
+Lo script crea anche una cartella `output_grafici/` quando viene eseguito.
+
+Il notebook `.ipynb` contiene celle Markdown e celle di codice, ma al momento
+non contiene output salvati.
+
+## Installazione
+
+Dalla cartella principale della repository:
 
 ```bash
-git status
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-aggiungi il README:
+In questa repository non e' ancora presente un `requirements.txt`. I pacchetti
+minimi rilevati dal codice di questo progetto sono:
 
 ```bash
-git add pendolo_semplice_piccole_oscillazioni/README.md
+pip install numpy matplotlib jupyter
 ```
 
-crea un commit:
+`jupyter` serve solo se vuoi aprire ed eseguire il notebook.
+
+## Esecuzione
+
+Per eseguire lo script da terminale:
 
 ```bash
-git commit -m "Aggiunge README per piccole oscillazioni"
+cd pendolo_semplice_piccole_oscillazioni
+python3 pendolo_semplice_piccole_oscillazioni.py
 ```
 
-e carica le modifiche su GitHub:
+Per aprire il notebook:
 
 ```bash
-git push
+jupyter notebook pendolo_semplice_piccole_oscillazioni.ipynb
 ```
 
-Se il repository non e' ancora collegato a GitHub, bisogna prima creare un
-repository su GitHub e collegarlo con `git remote add origin`.
+oppure:
+
+```bash
+jupyter lab pendolo_semplice_piccole_oscillazioni.ipynb
+```
+
+Da GitHub puoi visualizzare il notebook, ma non eseguirlo cella-per-cella nella
+normale pagina del repository. Per eseguire le celle serve Jupyter, VS Code con
+estensione Jupyter, Codespaces, Colab o Binder.
+
+## Output attesi
+
+Lo script genera la cartella:
+
+```text
+output_grafici/
+```
+
+e salva tre grafici:
+
+- `posizione_angolare.png`: andamento di `theta(t)`;
+- `velocita_angolare.png`: andamento della velocita' angolare;
+- `accelerazione_angolare.png`: andamento dell'accelerazione angolare.
+
+Nel modello implementato, le tre grandezze vengono calcolate con formule
+analitiche, non con un integratore numerico.
+
+## Confronto con il pendolo numerico
+
+Il modello per piccole oscillazioni e' linearizzato ed e' risolubile
+analiticamente. Il modello non lineare, invece, mantiene il termine
+`sin(theta)` e in generale viene studiato con integrazione numerica.
+
+Per angoli piccoli, i due modelli devono produrre risultati molto simili. Per
+angoli piu' grandi, il modello linearizzato diventa meno accurato.
+
+## Autore
+
+Repository didattica per esercizi di fisica computazionale.
