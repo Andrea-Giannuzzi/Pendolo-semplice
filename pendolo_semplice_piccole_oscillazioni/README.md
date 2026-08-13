@@ -1,70 +1,69 @@
-# Pendolo per piccole oscillazioni
+# Pendulum for Small Oscillations
 
-## Descrizione
+## Description
 
-Questo progetto studia il pendolo semplice nel limite delle piccole
-oscillazioni. In questo caso l'angolo e' abbastanza piccolo da poter usare
-l'approssimazione:
+This project studies the simple pendulum in the small-oscillation limit. In
+this case, the angle is small enough to use the approximation:
 
 ```text
 sin(theta) ~= theta
 ```
 
-Con questa approssimazione il moto del pendolo diventa quello di un oscillatore
-armonico e puo' essere descritto con una soluzione analitica.
+With this approximation, the pendulum's motion becomes that of a harmonic
+oscillator and can be described by an analytical solution.
 
-Il progetto contiene sia uno script Python sia un notebook Jupyter.
+The project contains both a Python script and a Jupyter notebook.
 
-## Modello fisico
+## Physical Model
 
-L'equazione linearizzata del pendolo e':
+The linearized pendulum equation is:
 
 ```text
 theta''(t) + (g/L) theta(t) = 0
 ```
 
-La frequenza angolare naturale e':
+The natural angular frequency is:
 
 ```text
 omega = sqrt(g/L)
 ```
 
-La soluzione generale puo' essere scritta come:
+The general solution can be written as:
 
 ```text
 theta(t) = A cos(sqrt(g/L) t) + B sin(sqrt(g/L) t)
 ```
 
-Nel codice, usando le condizioni iniziali `theta0` e `omega0`, la soluzione e':
+In the code, using the initial conditions `theta0` and `omega0`, the solution is:
 
 ```text
 theta(t) = theta0 cos(omega t) + (omega0 / omega) sin(omega t)
 ```
 
-Il periodo del moto e':
+The period of the motion is:
 
 ```text
 T = 2 pi sqrt(L/g)
 ```
 
-## Validita' dell'approssimazione
+## Validity of the Approximation
 
-L'approssimazione `sin(theta) ~= theta` e' valida quando `theta` e' piccolo ed e'
-espresso in radianti.
+The approximation `sin(theta) ~= theta` is valid when `theta` is small and is
+expressed in radians.
 
-Nel codice viene usato:
+The code uses:
 
 ```python
 theta0 = 0.1
 ```
 
-che corrisponde a circa 5.7 gradi. Per angoli piu' grandi, l'errore
-dell'approssimazione cresce e conviene confrontare questo modello con il pendolo
-non lineare.
+which corresponds to approximately 5.7 degrees. For larger angles, the
+approximation error increases, and it is useful to compare this model with the
+nonlinear pendulum.
 
-## Struttura del progetto
+## Project Structure
 
-File principali:
+Main files:
 
 ```text
 pendolo_semplice_piccole_oscillazioni/
@@ -73,80 +72,80 @@ pendolo_semplice_piccole_oscillazioni/
 └── README.md
 ```
 
-Lo script crea anche una cartella `output_grafici/` quando viene eseguito.
+The script also creates an `output_grafici/` directory when it is run.
 
-Il notebook `.ipynb` contiene celle Markdown e celle di codice, ma al momento
-non contiene output salvati.
+The `.ipynb` notebook contains Markdown and code cells, but currently has no
+saved output.
 
-## Installazione
+## Installation
 
-Dalla cartella principale della repository:
+From the repository's main directory:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-In questa repository non e' ancora presente un `requirements.txt`. I pacchetti
-minimi rilevati dal codice di questo progetto sono:
+This repository does not yet contain a `requirements.txt`. The minimum packages
+identified from this project's code are:
 
 ```bash
 pip install numpy matplotlib jupyter
 ```
 
-`jupyter` serve solo se vuoi aprire ed eseguire il notebook.
+`jupyter` is only required if you want to open and run the notebook.
 
-## Esecuzione
+## Running the Project
 
-Per eseguire lo script da terminale:
+To run the script from the terminal:
 
 ```bash
 cd pendolo_semplice_piccole_oscillazioni
 python3 pendolo_semplice_piccole_oscillazioni.py
 ```
 
-Per aprire il notebook:
+To open the notebook:
 
 ```bash
 jupyter notebook pendolo_semplice_piccole_oscillazioni.ipynb
 ```
 
-oppure:
+or:
 
 ```bash
 jupyter lab pendolo_semplice_piccole_oscillazioni.ipynb
 ```
 
-Da GitHub puoi visualizzare il notebook, ma non eseguirlo cella-per-cella nella
-normale pagina del repository. Per eseguire le celle serve Jupyter, VS Code con
-estensione Jupyter, Codespaces, Colab o Binder.
+On GitHub, you can view the notebook but cannot run it cell by cell on the
+standard repository page. Running the cells requires Jupyter, VS Code with the
+Jupyter extension, Codespaces, Colab, or Binder.
 
-## Output attesi
+## Expected Output
 
-Lo script genera la cartella:
+The script creates the directory:
 
 ```text
 output_grafici/
 ```
 
-e salva tre grafici:
+and saves three plots:
 
-- `posizione_angolare.png`: andamento di `theta(t)`;
-- `velocita_angolare.png`: andamento della velocita' angolare;
-- `accelerazione_angolare.png`: andamento dell'accelerazione angolare.
+- `posizione_angolare.png`: evolution of `theta(t)`;
+- `velocita_angolare.png`: evolution of the angular velocity;
+- `accelerazione_angolare.png`: evolution of the angular acceleration.
 
-Nel modello implementato, le tre grandezze vengono calcolate con formule
-analitiche, non con un integratore numerico.
+In the implemented model, the three quantities are calculated with analytical
+formulas rather than a numerical integrator.
 
-## Confronto con il pendolo numerico
+## Comparison with the Numerical Pendulum
 
-Il modello per piccole oscillazioni e' linearizzato ed e' risolubile
-analiticamente. Il modello non lineare, invece, mantiene il termine
-`sin(theta)` e in generale viene studiato con integrazione numerica.
+The small-oscillation model is linearized and can be solved analytically. The
+nonlinear model, in contrast, retains the `sin(theta)` term and is generally
+studied through numerical integration.
 
-Per angoli piccoli, i due modelli devono produrre risultati molto simili. Per
-angoli piu' grandi, il modello linearizzato diventa meno accurato.
+For small angles, the two models should produce very similar results. For
+larger angles, the linearized model becomes less accurate.
 
-## Autore
+## Author
 
-Repository didattica per esercizi di fisica computazionale.
+Educational repository for computational physics exercises.

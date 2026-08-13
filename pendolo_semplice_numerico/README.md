@@ -1,62 +1,62 @@
-# Pendolo numerico
+# Numerical Pendulum
 
-## Descrizione
+## Description
 
-Questo progetto simula numericamente il moto di un pendolo semplice senza
-attrito, usando il modello non lineare. A differenza del caso delle piccole
-oscillazioni, qui non si sostituisce `sin(theta)` con `theta`: l'equazione viene
-integrata direttamente nella sua forma non lineare.
+This project numerically simulates the motion of a frictionless simple pendulum
+using the nonlinear model. Unlike the small-oscillation case, `sin(theta)` is
+not replaced with `theta`: the equation is integrated directly in its nonlinear
+form.
 
-Il progetto contiene sia uno script Python sia un notebook Jupyter.
+The project contains both a Python script and a Jupyter notebook.
 
-## Modello fisico
+## Physical Model
 
-L'equazione del pendolo semplice non lineare e':
+The nonlinear simple pendulum equation is:
 
 ```text
 theta''(t) + (g/L) sin(theta(t)) = 0
 ```
 
-dove:
+where:
 
-- `theta`: angolo del pendolo rispetto alla verticale, in radianti;
-- `omega`: velocita' angolare, cioe' `theta'(t)`;
-- `L`: lunghezza del pendolo;
-- `g`: accelerazione di gravita';
-- `t`: tempo.
+- `theta`: pendulum angle from the vertical, in radians;
+- `omega`: angular velocity, that is, `theta'(t)`;
+- `L`: pendulum length;
+- `g`: gravitational acceleration;
+- `t`: time.
 
-Per usare un integratore numerico, l'equazione del secondo ordine viene scritta
-come sistema di due equazioni del primo ordine:
+To use a numerical integrator, the second-order equation is written as a system
+of two first-order equations:
 
 ```text
 theta' = omega
 omega' = -(g/L) sin(theta)
 ```
 
-## Metodo numerico
+## Numerical Method
 
-Il codice usa `scipy.integrate.solve_ivp`, una funzione di SciPy per risolvere
-problemi differenziali con condizioni iniziali.
+The code uses `scipy.integrate.solve_ivp`, a SciPy function for solving
+differential equations with initial conditions.
 
-Nel file `pendolo_semplice.py`, lo stato iniziale e':
+In `pendolo_semplice.py`, the initial state is:
 
 ```python
 stato_iniziale = [theta0, omega0]
 ```
 
-dove `theta0` e' l'angolo iniziale e `omega0` e' la velocita' angolare iniziale.
+where `theta0` is the initial angle and `omega0` is the initial angular velocity.
 
-Lo script calcola:
+The script calculates:
 
-- posizione angolare `theta(t)`;
-- velocita' angolare `omega(t)`;
-- accelerazione angolare `alpha(t) = -(g/L) sin(theta)`.
+- angular position `theta(t)`;
+- angular velocity `omega(t)`;
+- angular acceleration `alpha(t) = -(g/L) sin(theta)`.
 
-Poi salva tre grafici separati.
+It then saves three separate plots.
 
-## Struttura del progetto
+## Project Structure
 
-File principali:
+Main files:
 
 ```text
 pendolo_semplice_numerico/
@@ -68,75 +68,75 @@ pendolo_semplice_numerico/
     └── accelerazione_angolare.png
 ```
 
-Il notebook `.ipynb` contiene codice e celle Markdown, ma al momento non contiene
-output salvati. I grafici nella cartella `output_grafici/` sono file PNG prodotti
-dallo script.
+The `.ipynb` notebook contains code and Markdown cells, but currently has no
+saved output. The plots in the `output_grafici/` directory are PNG files
+produced by the script.
 
-## Installazione
+## Installation
 
-Dalla cartella principale della repository:
+From the repository's main directory:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-In questa repository non e' ancora presente un `requirements.txt`. I pacchetti
-minimi rilevati dal codice di questo progetto sono:
+This repository does not yet contain a `requirements.txt`. The minimum packages
+identified from this project's code are:
 
 ```bash
 pip install numpy matplotlib scipy jupyter
 ```
 
-`jupyter` serve solo se vuoi aprire ed eseguire il notebook.
+`jupyter` is only required if you want to open and run the notebook.
 
-## Esecuzione
+## Running the Project
 
-Per eseguire lo script da terminale:
+To run the script from the terminal:
 
 ```bash
 cd pendolo_semplice_numerico
 python3 pendolo_semplice.py
 ```
 
-Per aprire il notebook:
+To open the notebook:
 
 ```bash
 jupyter notebook pendolo_semplice.ipynb
 ```
 
-oppure:
+or:
 
 ```bash
 jupyter lab pendolo_semplice.ipynb
 ```
 
-Da GitHub puoi visualizzare il notebook, ma non eseguirlo cella-per-cella nella
-normale pagina del repository. Per eseguire le celle serve Jupyter, VS Code con
-estensione Jupyter, Codespaces, Colab o Binder.
+On GitHub, you can view the notebook but cannot run it cell by cell on the
+standard repository page. Running the cells requires Jupyter, VS Code with the
+Jupyter extension, Codespaces, Colab, or Binder.
 
-## Output attesi
+## Expected Output
 
-Lo script genera la cartella:
+The script creates the directory:
 
 ```text
 output_grafici/
 ```
 
-e salva tre grafici:
+and saves three plots:
 
-- `posizione_angolare.png`: andamento di `theta(t)`;
-- `velocita_angolare.png`: andamento di `omega(t)`;
-- `accelerazione_angolare.png`: andamento di `alpha(t)`.
+- `posizione_angolare.png`: evolution of `theta(t)`;
+- `velocita_angolare.png`: evolution of `omega(t)`;
+- `accelerazione_angolare.png`: evolution of `alpha(t)`.
 
-## Note fisiche
+## Physical Notes
 
-Il modello non lineare e' piu' generale del modello per piccole oscillazioni.
-Per angoli piccoli, `sin(theta)` e' quasi uguale a `theta`, quindi il pendolo si
-comporta quasi come un oscillatore armonico. Per angoli piu' grandi, invece, la
-non linearita' diventa importante e l'integrazione numerica e' il metodo piu'
-comodo per studiare il moto.
+The nonlinear model is more general than the small-oscillation model. For small
+angles, `sin(theta)` is nearly equal to `theta`, so the pendulum behaves almost
+like a harmonic oscillator. For larger angles, however, the nonlinearity
+becomes important, and numerical integration is the most convenient method for
+studying the motion.
 
-## Autore
+## Author
 
-Repository didattica per esercizi di fisica computazionale.
+Educational repository for computational physics exercises.
