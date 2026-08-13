@@ -1,87 +1,86 @@
-# Pendolo semplice
+# Simple Pendulum
 
-Questa repository raccoglie piccoli progetti Python/Jupyter dedicati allo studio
-del pendolo semplice. L'obiettivo e' usare codice, grafici e notebook per
-collegare il modello fisico alla sua implementazione computazionale.
+This repository contains small Python/Jupyter projects dedicated to the study
+of the simple pendulum. The goal is to use code, plots, and notebooks to connect
+the physical model with its computational implementation.
 
-## Progetti disponibili
+## Available Projects
 
-- [Pendolo numerico](./pendolo_semplice_numerico/README.md): integrazione
-  numerica dell'equazione non lineare del pendolo.
-- [Pendolo per piccole oscillazioni](./pendolo_semplice_piccole_oscillazioni/README.md):
-  soluzione analitica nel limite in cui `sin(theta) ~= theta`.
+- [Numerical pendulum](./pendolo_semplice_numerico/README.md): numerical
+  integration of the nonlinear pendulum equation.
+- [Pendulum for small oscillations](./pendolo_semplice_piccole_oscillazioni/README.md):
+  analytical solution in the limit where `sin(theta) ~= theta`.
 
-## Notebook presenti
+## Available Notebooks
 
-La repository contiene questi notebook Jupyter:
+The repository contains these Jupyter notebooks:
 
 - `pendolo_semplice_numerico/pendolo_semplice.ipynb`
 - `pendolo_semplice_piccole_oscillazioni/pendolo_semplice_piccole_oscillazioni.ipynb`
 
-Al momento dell'analisi, i notebook contengono celle Markdown e celle di codice,
-ma non contengono output salvati. Questo significa che GitHub puo' mostrarne la
-struttura, ma non mostrera' grafici gia' calcolati dentro il notebook finche' non
-vengono eseguiti e salvati.
+At the time of analysis, the notebooks contain Markdown and code cells but no
+saved output. This means that GitHub can display their structure, but it will
+not show plots calculated within the notebooks until they are run and saved.
 
-## Come GitHub visualizza i notebook
+## How GitHub Displays Notebooks
 
-Quando carichi un file `.ipynb` su GitHub, un visitatore vede una versione
-renderizzata del notebook:
+When you upload an `.ipynb` file to GitHub, visitors see a rendered version of
+the notebook:
 
-- celle Markdown formattate;
-- celle di codice;
-- eventuali output salvati, come tabelle, testo o grafici.
+- formatted Markdown cells;
+- code cells;
+- any saved output, such as tables, text, or plots.
 
-Questa visualizzazione e' statica. Vedere un notebook su GitHub non significa
-eseguirlo: GitHub mostra il contenuto salvato nel file, ma normalmente non offre
-un ambiente Jupyter completo in cui eseguire una cella alla volta.
+This view is static. Viewing a notebook on GitHub does not mean running it:
+GitHub displays the content saved in the file, but it does not normally provide
+a complete Jupyter environment in which cells can be run individually.
 
-## Come eseguire i notebook
+## Running the Notebooks
 
-Per eseguire davvero le celle, puoi usare una di queste soluzioni:
+To run the cells, you can use one of these solutions:
 
-- Jupyter Notebook o JupyterLab installato localmente;
-- VS Code con estensione Jupyter;
-- GitHub Codespaces con ambiente Python/Jupyter configurato;
-- Google Colab, aggiungendo un link compatibile;
-- Binder, configurando le dipendenze del progetto;
-- JupyterLite/GitHub Pages per casi particolari e piu' avanzati.
+- Jupyter Notebook or JupyterLab installed locally;
+- VS Code with the Jupyter extension;
+- GitHub Codespaces with a configured Python/Jupyter environment;
+- Google Colab, by adding a compatible link;
+- Binder, by configuring the project dependencies;
+- JupyterLite/GitHub Pages for specific, more advanced use cases.
 
-Per uno studente di fisica, la soluzione piu' semplice e robusta e':
+For a physics student, the simplest and most robust solution is to:
 
-1. tenere i notebook su GitHub per mostrarli in modo statico;
-2. aggiungere istruzioni nei README per eseguirli localmente;
-3. usare eventualmente Colab o Binder solo se si vuole rendere l'esecuzione piu'
-   immediata dal browser.
+1. keep the notebooks on GitHub for static display;
+2. add instructions to the READMEs for running them locally;
+3. use Colab or Binder only if execution needs to be more readily available in
+   the browser.
 
-## Installazione locale consigliata
+## Recommended Local Installation
 
-Dopo aver clonato la repository:
+After cloning the repository:
 
 ```bash
 git clone https://github.com/Andrea-Giannuzzi/Pendolo-semplice.git
 cd Pendolo-semplice
 ```
 
-puoi creare un ambiente virtuale:
+you can create a virtual environment:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-In questa repository non e' ancora presente un `requirements.txt`. Le dipendenze
-minime rilevate dal codice sono:
+This repository does not yet contain a `requirements.txt`. The minimum
+dependencies identified from the code are:
 
 ```bash
 pip install numpy matplotlib scipy jupyter
 ```
 
-`scipy` serve per il progetto del pendolo numerico, mentre `jupyter` serve solo
-se vuoi aprire ed eseguire i notebook.
+`scipy` is required for the numerical pendulum project, while `jupyter` is only
+needed to open and run the notebooks.
 
-## Note
+## Notes
 
-I file generati automaticamente, come cache Python o cache Matplotlib, non sono
-parte essenziale della documentazione scientifica. I grafici possono essere
-rigenerati eseguendo gli script o i notebook dei singoli progetti.
+Automatically generated files, such as Python or Matplotlib caches, are not an
+essential part of the scientific documentation. The plots can be regenerated
+by running the scripts or notebooks for the individual projects.
